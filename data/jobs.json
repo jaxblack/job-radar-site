@@ -1,23 +1,203 @@
 [
   {
     "source": "apple",
-    "title": "Software Engineer, Maps",
+    "title": "US - Specialist: Seasonal, Part-time",
     "company": "Apple",
-    "location": "Shanghai",
-    "url": "https://jobs.apple.com/en-us/details/200612345/software-engineer-maps",
-    "posted_at": "2026-08-19T00:00:00+00:00",
-    "last_seen_at": null,
-    "stale": true
+    "location": "United States",
+    "url": "https://jobs.apple.com/en-us/details/114438158/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
   },
   {
     "source": "apple",
-    "title": "Machine Learning Engineer",
+    "title": "Client Partner, Apple Ads",
     "company": "Apple",
-    "location": "Beijing; Shenzhen",
-    "url": "https://jobs.apple.com/en-us/details/200612346/machine-learning-engineer",
-    "posted_at": "2026-08-18T02:00:00+00:00",
-    "last_seen_at": null,
-    "stale": true
+    "location": "Culver City",
+    "url": "https://jobs.apple.com/en-us/details/200680987/client-partner-apple-ads",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "AI Quality & Test Automation Engineer",
+    "company": "Apple",
+    "location": "Cupertino",
+    "url": "https://jobs.apple.com/en-us/details/200680981/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Mechanical Systems Design Engineer",
+    "company": "Apple",
+    "location": "Cupertino",
+    "url": "https://jobs.apple.com/en-us/details/200680722/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Software Engineer, Calls Security",
+    "company": "Apple",
+    "location": "San Diego",
+    "url": "https://jobs.apple.com/en-us/details/200663776/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "AIML - Machine Learning Researcher, Foundation Models",
+    "company": "Apple",
+    "location": "Cupertino",
+    "url": "https://jobs.apple.com/en-us/details/200641998/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "AIML - Machine Learning Researcher, Foundation Models",
+    "company": "Apple",
+    "location": "New York City",
+    "url": "https://jobs.apple.com/en-us/details/200641998/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "AIML - Staff ML Infrastructure Engineer, ML Platform & Technology - Pre-training Infrastructure",
+    "company": "Apple",
+    "location": "San Francisco Bay Area",
+    "url": "https://jobs.apple.com/en-us/details/200680978/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "AV Project Manager, SWE Employee Experience",
+    "company": "Apple",
+    "location": "Cupertino",
+    "url": "https://jobs.apple.com/en-us/details/200680258/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Service Reliability Engineer (SRE)",
+    "company": "Apple",
+    "location": "Seattle",
+    "url": "https://jobs.apple.com/en-us/details/200673911/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Swift Software Engineer - Agentic OS Experiences",
+    "company": "Apple",
+    "location": "Cupertino",
+    "url": "https://jobs.apple.com/en-us/details/200643348/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Senior Swift Software Engineer - Agentic OS Experiences",
+    "company": "Apple",
+    "location": "Cupertino",
+    "url": "https://jobs.apple.com/en-us/details/200643345/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Staff/Sr. Core Infrastructure Engineer, AI, Search & Knowledge Platforms",
+    "company": "Apple",
+    "location": "San Francisco Bay Area",
+    "url": "https://jobs.apple.com/en-us/details/200679317/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Staff/Sr. Core Infrastructure Engineer, AI, Search & Knowledge Platforms",
+    "company": "Apple",
+    "location": "Seattle",
+    "url": "https://jobs.apple.com/en-us/details/200679317/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Optical Network Engineer, Infrastructure Services",
+    "company": "Apple",
+    "location": "Dallas - Fort Worth Metro Area",
+    "url": "https://jobs.apple.com/en-us/details/200679196/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Optical Network Engineer, Infrastructure Services",
+    "company": "Apple",
+    "location": "Denver Metro Area",
+    "url": "https://jobs.apple.com/en-us/details/200679196/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Optical Network Engineer, Infrastructure Services",
+    "company": "Apple",
+    "location": "Sacramento Metro Area",
+    "url": "https://jobs.apple.com/en-us/details/200679196/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Optical Network Engineer, Infrastructure Services",
+    "company": "Apple",
+    "location": "San Francisco Bay Area",
+    "url": "https://jobs.apple.com/en-us/details/200679196/<redacted>",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Cash Applications Analyst",
+    "company": "Apple",
+    "location": "Austin",
+    "url": "https://jobs.apple.com/en-us/details/200671144/cash-applications-analyst",
+    "posted_at": "2026-08-30T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
+  },
+  {
+    "source": "apple",
+    "title": "Sr. Engineering Program Manager - Customer Systems",
+    "company": "Apple",
+    "location": "Austin",
+    "url": "https://jobs.apple.com/en-us/details/200679583/<redacted>",
+    "posted_at": "2026-08-29T16:00:00+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.021366+00:00",
+    "stale": false
   },
   {
     "source": "microsoft",
@@ -46,7 +226,7 @@
     "location": "深圳",
     "url": "https://jobs.bytedance.com/zh/position/BD-1001/detail",
     "posted_at": "2025-08-21T16:00:00+00:00",
-    "last_seen_at": "2026-08-31T10:12:45.856525+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.677560+00:00",
     "stale": false
   },
   {
@@ -56,7 +236,7 @@
     "location": "北京",
     "url": "https://jobs.bytedance.com/zh/position/BD-1002/detail",
     "posted_at": "2025-08-23T00:00:00+00:00",
-    "last_seen_at": "2026-08-31T10:12:45.856525+00:00",
+    "last_seen_at": "2026-08-31T11:10:54.677560+00:00",
     "stale": false
   },
   {
@@ -66,7 +246,7 @@
     "location": "上海",
     "url": "https://careers.tencent.com/jobdesc.html",
     "posted_at": "2025-08-21T16:00:00+00:00",
-    "last_seen_at": "2026-08-31T10:12:50.446145+00:00",
+    "last_seen_at": "2026-08-31T11:10:59.269083+00:00",
     "stale": false
   },
   {
@@ -76,7 +256,7 @@
     "location": "成都",
     "url": "https://careers.tencent.com/jobdesc.html",
     "posted_at": "2025-08-22T17:30:00+00:00",
-    "last_seen_at": "2026-08-31T10:12:50.446145+00:00",
+    "last_seen_at": "2026-08-31T11:10:59.269083+00:00",
     "stale": false
   },
   {
@@ -86,7 +266,7 @@
     "location": "广东省 广州市",
     "url": "https://job.chinatelecom.com.cn/position/ct-2026-001",
     "posted_at": "2026-08-20T08:00:00+00:00",
-    "last_seen_at": "2026-08-31T10:12:46.390640+00:00",
+    "last_seen_at": "2026-08-31T11:10:55.159823+00:00",
     "stale": false
   },
   {
@@ -96,7 +276,7 @@
     "location": "北京市 西城区",
     "url": "https://zhaopin.sgcc.com.cn/job/detail/sg-2026-001",
     "posted_at": "2026-08-19T17:30:00+00:00",
-    "last_seen_at": "2026-08-31T10:12:50.026608+00:00",
+    "last_seen_at": "2026-08-31T11:10:58.695661+00:00",
     "stale": false
   }
 ]
