@@ -3,42 +3,42 @@
     "source": "apple",
     "status": "stale",
     "count": 2,
-    "last_updated": "2026-08-31T09:47:32.305953+00:00",
+    "last_updated": "2026-08-31T10:12:45.383293+00:00",
     "detail": "last crawl failed; offline sample"
   },
   {
     "source": "microsoft",
     "status": "stale",
     "count": 2,
-    "last_updated": "2026-08-31T09:47:36.247724+00:00",
+    "last_updated": "2026-08-31T10:12:49.574255+00:00",
     "detail": "offline sample"
   },
   {
     "source": "bytedance",
     "status": "ok",
     "count": 2,
-    "last_updated": "2026-08-31T09:47:32.763630+00:00",
+    "last_updated": "2026-08-31T10:12:45.858912+00:00",
     "detail": null
   },
   {
     "source": "tencent",
     "status": "ok",
     "count": 2,
-    "last_updated": "2026-08-31T09:47:37.281876+00:00",
+    "last_updated": "2026-08-31T10:12:50.447889+00:00",
     "detail": null
   },
   {
     "source": "china-telecom",
     "status": "ok",
     "count": 1,
-    "last_updated": "2026-08-31T09:47:33.201110+00:00",
+    "last_updated": "2026-08-31T10:12:46.391940+00:00",
     "detail": null
   },
   {
     "source": "state-grid",
     "status": "ok",
     "count": 1,
-    "last_updated": "2026-08-31T09:47:36.816013+00:00",
+    "last_updated": "2026-08-31T10:12:50.027828+00:00",
     "detail": null
   }
 ]
