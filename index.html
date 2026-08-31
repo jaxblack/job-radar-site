@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Job Radar · 职位看板</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<header class="topbar">
+  <div class="topbar-main">
+    <h1>Job Radar 职位看板</h1>
+    <p class="updated">数据更新时间：<span id="generated-at">加载中…</span></p>
+  </div>
+  <div id="source-badges" class="badges" aria-label="数据源抓取状态"></div>
+  <div id="stale-warnings" class="warnings" role="status"></div>
+</header>
+
+<main>
+  <section class="controls" aria-label="筛选与排序">
+    <label class="field">
+      <span>公司</span>
+      <select id="filter-company"><option value="">全部公司</option></select>
+    </label>
+    <label class="field">
+      <span>地点</span>
+      <select id="filter-location"><option value="">全部地点</option></select>
+    </label>
+    <label class="field grow">
+      <span>关键字</span>
+      <input id="filter-keyword" type="search" placeholder="搜索标题 / 公司 / 地点…" autocomplete="off" />
+    </label>
+    <label class="field">
+      <span>排序</span>
+      <select id="sort-order">
+        <option value="desc">时间：新 → 旧</option>
+        <option value="asc">时间：旧 → 新</option>
+      </select>
+    </label>
+    <button id="reset-btn" type="button" class="reset">重置</button>
+  </section>
+
+  <p id="result-count" class="count"></p>
+  <div id="error-box" class="error" role="alert" hidden></div>
+  <ul id="job-list" class="job-list"></ul>
+  <p id="empty-hint" class="empty" hidden>没有符合条件的职位。</p>
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
