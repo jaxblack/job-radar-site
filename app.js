@@ -54,6 +54,17 @@
     unknown: "未分类"
   };
 
+  var CATEGORY_ALIASES = {
+    "外企": "foreign",
+    "大厂": "bigtech",
+    "独角兽": "unicorn",
+    "国企央企": "soe",
+    "银行": "bank",
+    "金融": "finance",
+    "量化": "quant",
+    "未分类": "unknown"
+  };
+
   function getCity(j) {
     var v = asText(pick(j, ["city", "city_name", "work_city", "job_city"]));
     return v || UNKNOWN;
@@ -66,7 +77,8 @@
     var list = Array.isArray(raw) ? raw : [raw];
     var out = [];
     list.forEach(function (item) {
-      var v = asText(item).toLowerCase();
+      var text = asText(item);
+      var v = CATEGORY_ALIASES[text] || text.toLowerCase();
       if (v && out.indexOf(v) === -1) out.push(v);
     });
     return out.length ? out : [UNKNOWN];
@@ -185,6 +197,29 @@
     return "状态未知";
   }
 
+  function statusClass(st) {
+    if (st === "ok") return "badge-ok";
+    if (st === "stale") return "badge-stale";
+    if (st === "failed") return "badge-failed";
+    return "badge-unknown";
+  }
+
+  function sourceBadge(s) {
+    var st = normStatus(s);
+    var name = sourceName(s);
+    var t = sourceTime(s);
+    var cnt = sourceCount(s);
+    var detail = sourceDetail(s);
+    var badge = el("span", "badge " + statusClass(st));
+    badge.appendChild(el("span", "dot"));
+    badge.appendChild(el("span", null, name + " · " + statusLabel(st) +
+      (cnt !== null ? "（" + cnt + "）" : "")));
+    badge.title = name + "：" + statusLabel(st) +
+      (t ? "（数据时间 " + fmtRaw(t) + "）" : "") +
+      (detail ? "｜" + detail : "");
+    return badge;
+  }
+
   function renderHeader() {
     var gen = pick(state.meta, ["generated_at", "generatedAt", "updated_at", "timestamp"]);
     $("generated-at").textContent = gen ? fmtRaw(gen) : "未知";
@@ -194,38 +229,52 @@
     clear(badges);
     clear(warns);
 
+    var counts = { ok: 0, stale: 0, failed: 0, unknown: 0 };
+    var abnormal = [];
     state.sources.forEach(function (s) {
       var st = normStatus(s);
-      var name = sourceName(s);
-      var t = sourceTime(s);
-      var cls = st === "ok" ? "badge-ok" : st === "stale" ? "badge-stale" : st === "failed" ? "badge-failed" : "badge-unknown";
+      counts[st in counts ? st : "unknown"] += 1;
+      if (st !== "ok") abnormal.push(s);
+    });
 
-      var cnt = sourceCount(s);
-      var detail = sourceDetail(s);
+    ["ok", "stale", "failed", "unknown"].forEach(function (st) {
+      if (!counts[st]) return;
+      var badge = el("span", "badge " + statusClass(st));
+      badge.appendChild(el("span", "dot"));
+      badge.appendChild(el("span", null, statusLabel(st) + " " + counts[st]));
+      badges.appendChild(badge);
+    });
 
-      var b = el("span", "badge " + cls);
-      b.appendChild(el("span", "dot"));
-      b.appendChild(el("span", null, name + " · " + statusLabel(st) +
-        (cnt !== null ? "（" + cnt + "）" : "")));
-      b.title = name + "：" + statusLabel(st) +
-        (t ? "（数据时间 " + fmtRaw(t) + "）" : "") +
-        (detail ? "｜" + detail : "");
-      badges.appendChild(b);
+    var allDetails = el("details", "source-details");
+    allDetails.appendChild(el("summary", null, "查看全部 " + state.sources.length + " 个来源"));
+    var allBadges = el("div", "badges source-detail-grid");
+    state.sources.forEach(function (s) { allBadges.appendChild(sourceBadge(s)); });
+    allDetails.appendChild(allBadges);
+    badges.appendChild(allDetails);
 
-      if (st !== "ok") {
+    if (abnormal.length) {
+      var warningDetails = el("details", "warning-details");
+      warningDetails.appendChild(el("summary", null, "查看 " + abnormal.length + " 个异常来源详情"));
+      abnormal.forEach(function (s) {
+        var st = normStatus(s);
+        var name = sourceName(s);
+        var t = sourceTime(s);
+        var cnt = sourceCount(s);
+        var detail = sourceDetail(s);
         var when = t ? fmtRaw(t) : "更早";
         var line = el("div", "warn-line" + (st === "failed" ? " is-failed" : ""));
         if (st === "failed" && !cnt) {
-          line.textContent = "⚠️ 来源「" + name + "」本次抓取失败，且没有可展示的旧数据。";
+          line.textContent = "来源「" + name + "」本次抓取失败，且没有可展示的旧数据。";
         } else {
-          line.textContent = "⚠️ 来源「" + name + "」" +
+          line.textContent = "来源「" + name + "」" +
             (st === "failed" ? "本次抓取失败" : "数据已陈旧") +
             "，展示的是 " + when + " 的旧数据。";
         }
         if (detail) line.textContent += "（" + detail + "）";
-        warns.appendChild(line);
-      }
-    });
+        warningDetails.appendChild(line);
+      });
+      warns.appendChild(warningDetails);
+    }
   }
 
   // ---------- filters ----------

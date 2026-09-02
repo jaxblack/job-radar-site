@@ -51,6 +51,11 @@ body {
 .badge-unknown { color: var(--muted); background: #eef0f3; border-color: var(--line); }
 
 .warnings { margin-top: 12px; display: grid; gap: 6px; }
+.source-details, .warning-details { width: 100%; color: var(--muted); font-size: 13px; }
+.source-details summary, .warning-details summary { cursor: pointer; width: fit-content; }
+.source-detail-grid { margin: 8px 0 0; }
+.warning-details .warn-line:first-of-type { margin-top: 8px; }
+.warning-details .warn-line + .warn-line { margin-top: 6px; }
 .warn-line {
   font-size: 13px;
   padding: 8px 12px;
