@@ -3,588 +3,588 @@
     "source": "01ai",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.202923+00:00",
+    "last_updated": "2026-09-02T15:21:10.433772+00:00",
     "detail": "last crawl failed: DiscoveryError: 01ai: no candidate careers URL returned postings (https://careers.01ai.com/: URLError; https://jobs.01ai.com/: URLError; https://job.01ai.com/: URLError); no data available"
   },
   {
     "source": "abb",
     "status": "ok",
     "count": 77,
-    "last_updated": "2026-09-02T10:34:46.988515+00:00",
+    "last_updated": "2026-09-02T15:21:10.213688+00:00",
     "detail": null
   },
   {
     "source": "abchina",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.253136+00:00",
+    "last_updated": "2026-09-02T15:21:10.451193+00:00",
     "detail": "last crawl failed: DiscoveryError: abchina: no candidate careers URL returned postings (https://career.abchina.com/: URLError; https://careers.abchina.com/: URLError; https://jobs.abchina.com/: URLError); no data available"
   },
   {
     "source": "alibaba",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.189038+00:00",
+    "last_updated": "2026-09-02T15:21:10.423194+00:00",
     "detail": "last crawl failed: DiscoveryError: alibaba: no candidate careers URL returned postings; no data available"
   },
   {
     "source": "amazon",
     "status": "ok",
     "count": 45,
-    "last_updated": "2026-09-02T10:32:11.651198+00:00",
+    "last_updated": "2026-09-02T15:18:31.394336+00:00",
     "detail": null
   },
   {
     "source": "amd",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.900064+00:00",
+    "last_updated": "2026-09-02T15:21:10.119981+00:00",
     "detail": "last crawl failed: DiscoveryError: amd: no candidate careers URL returned postings (https://jobs.amd.com/: URLError; https://job.amd.com/: URLError); no data available"
   },
   {
     "source": "antgroup",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.862374+00:00",
+    "last_updated": "2026-09-02T15:21:10.098100+00:00",
     "detail": "last crawl failed: DiscoveryError: antgroup: no candidate careers URL returned postings (https://careers.antgroup.com/: URLError; https://jobs.antgroup.com/: URLError; https://job.antgroup.com/: URLError); no data available"
   },
   {
     "source": "apple",
     "status": "ok",
     "count": 0,
-    "last_updated": "2026-09-02T10:32:13.239868+00:00",
+    "last_updated": "2026-09-02T15:18:33.368615+00:00",
     "detail": null
   },
   {
     "source": "astrazeneca",
     "status": "ok",
     "count": 48,
-    "last_updated": "2026-09-02T10:34:47.061056+00:00",
+    "last_updated": "2026-09-02T15:21:10.289743+00:00",
     "detail": null
   },
   {
     "source": "avic",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.247136+00:00",
+    "last_updated": "2026-09-02T15:21:10.445305+00:00",
     "detail": "last crawl failed: DiscoveryError: avic: no candidate careers URL returned postings (https://careers.avic.com/: URLError; https://jobs.avic.com/: URLError; https://job.avic.com/: URLError); no data available"
   },
   {
     "source": "baichuan",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.200362+00:00",
+    "last_updated": "2026-09-02T15:21:10.432462+00:00",
     "detail": "last crawl failed: DiscoveryError: baichuan: no candidate careers URL returned postings (https://careers.baichuan.com/: URLError; https://jobs.baichuan.com/: URLError; https://job.baichuan.com/: URLError); no data available"
   },
   {
     "source": "baidu",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.637706+00:00",
+    "last_updated": "2026-09-02T15:21:10.077241+00:00",
     "detail": "last crawl failed: DiscoveryError: baidu: no candidate careers URL returned postings (https://talent.baidu.com/jobs/list?city=北京: UnicodeEncodeError; https://careers.baidu.com/: URLError; https://jobs.baidu.com/: URLError); no data available"
   },
   {
     "source": "bankcomm",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.254755+00:00",
+    "last_updated": "2026-09-02T15:21:10.452326+00:00",
     "detail": "last crawl failed: DiscoveryError: bankcomm: no candidate careers URL returned postings (https://job.bankcomm.com/: URLError; https://careers.bankcomm.com/: URLError; https://jobs.bankcomm.com/: URLError); no data available"
   },
   {
     "source": "boc",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.855395+00:00",
+    "last_updated": "2026-09-02T15:21:10.092435+00:00",
     "detail": "last crawl failed: DiscoveryError: boc: no candidate careers URL returned postings (https://career.bankofchina.com/: URLError; https://careers.boc.com/: URLError; https://jobs.boc.com/: URLError); no data available"
   },
   {
     "source": "bytedance",
     "status": "ok",
     "count": 1,
-    "last_updated": "2026-09-02T10:32:13.938578+00:00",
+    "last_updated": "2026-09-02T15:18:34.315396+00:00",
     "detail": null
   },
   {
     "source": "cambricon",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.204697+00:00",
+    "last_updated": "2026-09-02T15:21:10.434880+00:00",
     "detail": "last crawl failed: DiscoveryError: cambricon: no candidate careers URL returned postings (https://careers.cambricon.com/: URLError; https://jobs.cambricon.com/: URLError; https://job.cambricon.com/: URLError); no data available"
   },
   {
     "source": "casc",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.851321+00:00",
+    "last_updated": "2026-09-02T15:21:10.088685+00:00",
     "detail": "last crawl failed: DiscoveryError: casc: no candidate careers URL returned postings (http://rc.spacechina.com/: URLError; https://careers.casc.com/: URLError; https://jobs.casc.com/: URLError); no data available"
   },
   {
     "source": "ccb",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.854101+00:00",
+    "last_updated": "2026-09-02T15:21:10.091236+00:00",
     "detail": "last crawl failed: DiscoveryError: ccb: no candidate careers URL returned postings (https://job.ccb.com/cn/campus/index.html: URLError; https://careers.ccb.com/: URLError; https://jobs.ccb.com/: URLError); no data available"
   },
   {
     "source": "cetc",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.237311+00:00",
+    "last_updated": "2026-09-02T15:21:10.444215+00:00",
     "detail": "last crawl failed: DiscoveryError: cetc: no candidate careers URL returned postings (https://careers.cetc.com/: URLError; https://jobs.cetc.com/: URLError; https://job.cetc.com/: URLError); no data available"
   },
   {
     "source": "china-mobile",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.848392+00:00",
+    "last_updated": "2026-09-02T15:21:10.086325+00:00",
     "detail": "last crawl failed: DiscoveryError: china-mobile: no candidate careers URL returned postings (https://careers.chinamobile.com/: URLError; https://jobs.chinamobile.com/: URLError; https://job.chinamobile.com/: URLError); no data available"
   },
   {
     "source": "china-telecom",
     "status": "ok",
     "count": 0,
-    "last_updated": "2026-09-02T10:32:15.031530+00:00",
+    "last_updated": "2026-09-02T15:18:35.275108+00:00",
     "detail": null
   },
   {
     "source": "chinalife",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.265941+00:00",
+    "last_updated": "2026-09-02T15:21:10.461248+00:00",
     "detail": "last crawl failed: DiscoveryError: chinalife: no candidate careers URL returned postings (https://careers.chinalife.com/: URLError; https://jobs.chinalife.com/: URLError; https://job.chinalife.com/: URLError); no data available"
   },
   {
     "source": "chinaunicom",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.231690+00:00",
+    "last_updated": "2026-09-02T15:21:10.439192+00:00",
     "detail": "last crawl failed: DiscoveryError: chinaunicom: no candidate careers URL returned postings (https://www.chinaunicom.com.cn/: URLError; https://careers.chinaunicom.com/: URLError; https://jobs.chinaunicom.com/: URLError); no data available"
   },
   {
     "source": "cicc",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.861100+00:00",
+    "last_updated": "2026-09-02T15:21:10.096971+00:00",
     "detail": "last crawl failed: DiscoveryError: cicc: no candidate careers URL returned postings (https://job.cicc.com/: URLError; https://careers.cicc.com/: URLError; https://jobs.cicc.com/: URLError); no data available"
   },
   {
     "source": "cisco",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.999341+00:00",
+    "last_updated": "2026-09-02T15:21:10.224338+00:00",
     "detail": "last crawl failed: DiscoveryError: cisco: no candidate careers URL returned postings (https://job.cisco.com/: URLError); no data available"
   },
   {
     "source": "citadel-securities",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.873371+00:00",
+    "last_updated": "2026-09-02T15:21:10.106009+00:00",
     "detail": "last crawl failed: DiscoveryError: citadel-securities: no candidate careers URL returned postings (https://www.citadelsecurities.com/careers/open-opportunities/: HTTPError; https://careers.citadelsecurities.com/: URLError; https://jobs.citadelsecurities.com/: URLError); no data available"
   },
   {
     "source": "citic-bank",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.259084+00:00",
+    "last_updated": "2026-09-02T15:21:10.455802+00:00",
     "detail": "last crawl failed: DiscoveryError: citic-bank: no candidate careers URL returned postings (https://careers.citicbank.com/: URLError; https://jobs.citicbank.com/: URLError); no data available"
   },
   {
     "source": "citic-securities",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.859703+00:00",
+    "last_updated": "2026-09-02T15:21:10.095860+00:00",
     "detail": "last crawl failed: DiscoveryError: citic-securities: no candidate careers URL returned postings (https://job.citics.com/: URLError; https://careers.citicsecurities.com/: URLError; https://jobs.citicsecurities.com/: URLError); no data available"
   },
   {
     "source": "cmb",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.856783+00:00",
+    "last_updated": "2026-09-02T15:21:10.093608+00:00",
     "detail": "last crawl failed: DiscoveryError: cmb: no candidate careers URL returned postings (https://careers.cmb.com/: URLError; https://jobs.cmb.com/: URLError; https://job.cmb.com/: URLError); no data available"
   },
   {
     "source": "cmschina",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.264372+00:00",
+    "last_updated": "2026-09-02T15:21:10.460183+00:00",
     "detail": "last crawl failed: DiscoveryError: cmschina: no candidate careers URL returned postings (https://careers.cmschina.com/: URLError; https://jobs.cmschina.com/: URLError; https://job.cmschina.com/: URLError); no data available"
   },
   {
     "source": "dell",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.000786+00:00",
+    "last_updated": "2026-09-02T15:21:10.225526+00:00",
     "detail": "last crawl failed: DiscoveryError: dell: no candidate careers URL returned postings (https://careers.dell.com/: URLError; https://job.dell.com/: URLError); no data available"
   },
   {
     "source": "didi",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.194604+00:00",
+    "last_updated": "2026-09-02T15:21:10.427987+00:00",
     "detail": "last crawl failed: DiscoveryError: didi: no candidate careers URL returned postings (https://careers.didi.com/: URLError; https://jobs.didi.com/: URLError; https://job.didi.com/: URLError); no data available"
   },
   {
     "source": "drw",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.276817+00:00",
+    "last_updated": "2026-09-02T15:21:10.469179+00:00",
     "detail": "last crawl failed: DiscoveryError: drw: no candidate careers URL returned postings (https://careers.drw.com/: URLError; https://jobs.drw.com/: URLError; https://job.drw.com/: URLError); no data available"
   },
   {
     "source": "google-cn",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.897315+00:00",
+    "last_updated": "2026-09-02T15:21:10.117797+00:00",
     "detail": "last crawl failed: DiscoveryError: google-cn: no candidate careers URL returned postings (https://careers.googlecn.com/: URLError; https://jobs.googlecn.com/: URLError; https://job.googlecn.com/: URLError); no data available"
   },
   {
     "source": "gtja",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.261698+00:00",
+    "last_updated": "2026-09-02T15:21:10.458145+00:00",
     "detail": "last crawl failed: DiscoveryError: gtja: no candidate careers URL returned postings (https://www.gtja.com/: URLError; https://careers.gtja.com/: URLError; https://jobs.gtja.com/: URLError); no data available"
   },
   {
     "source": "haitong",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.263148+00:00",
+    "last_updated": "2026-09-02T15:21:10.459171+00:00",
     "detail": "last crawl failed: DiscoveryError: haitong: no candidate careers URL returned postings (https://www.htsec.com/: URLError; https://careers.haitong.com/: URLError; https://jobs.haitong.com/: URLError); no data available"
   },
   {
     "source": "highflyer",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.267388+00:00",
+    "last_updated": "2026-09-02T15:21:10.462404+00:00",
     "detail": "last crawl failed: DiscoveryError: highflyer: no candidate careers URL returned postings (https://careers.highflyer.com/: URLError; https://jobs.highflyer.com/: URLError; https://job.highflyer.com/: URLError); no data available"
   },
   {
     "source": "horizon-robotics",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.206287+00:00",
+    "last_updated": "2026-09-02T15:21:10.435963+00:00",
     "detail": "last crawl failed: DiscoveryError: horizon-robotics: no candidate careers URL returned postings (https://careers.horizonrobotics.com/: URLError; https://jobs.horizonrobotics.com/: URLError; https://job.horizonrobotics.com/: URLError); no data available"
   },
   {
     "source": "hsbc-cn",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.858098+00:00",
+    "last_updated": "2026-09-02T15:21:10.094722+00:00",
     "detail": "last crawl failed: DiscoveryError: hsbc-cn: no candidate careers URL returned postings (https://careers.hsbccn.com/: URLError; https://jobs.hsbccn.com/: URLError; https://job.hsbccn.com/: URLError); no data available"
   },
   {
     "source": "huatai",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.260386+00:00",
+    "last_updated": "2026-09-02T15:21:10.456999+00:00",
     "detail": "last crawl failed: DiscoveryError: huatai: no candidate careers URL returned postings (https://careers.huatai.com/: URLError; https://jobs.huatai.com/: URLError; https://job.huatai.com/: URLError); no data available"
   },
   {
     "source": "huawei",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.190394+00:00",
+    "last_updated": "2026-09-02T15:21:10.424453+00:00",
     "detail": "last crawl failed: DiscoveryError: huawei: no candidate careers URL returned postings (https://careers.huawei.com/: URLError; https://jobs.huawei.com/: URLError; https://job.huawei.com/: URLError); no data available"
   },
   {
     "source": "hudson-river-trading",
     "status": "ok",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.870957+00:00",
+    "last_updated": "2026-09-02T15:21:10.103969+00:00",
     "detail": null
   },
   {
     "source": "icbc",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.852731+00:00",
+    "last_updated": "2026-09-02T15:21:10.090111+00:00",
     "detail": "last crawl failed: DiscoveryError: icbc: no candidate careers URL returned postings (https://job.icbc.com.cn/: URLError; https://jobs.icbc.com/: URLError; https://job.icbc.com/: URLError); no data available"
   },
   {
     "source": "imc-trading",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.273089+00:00",
+    "last_updated": "2026-09-02T15:21:10.466985+00:00",
     "detail": "last crawl failed: DiscoveryError: imc-trading: no candidate careers URL returned postings (https://careers.imctrading.com/: URLError; https://jobs.imctrading.com/: URLError; https://job.imctrading.com/: URLError); no data available"
   },
   {
     "source": "intel",
     "status": "ok",
     "count": 7,
-    "last_updated": "2026-09-02T10:34:46.631817+00:00",
+    "last_updated": "2026-09-02T15:21:10.071402+00:00",
     "detail": null
   },
   {
     "source": "jane-street",
     "status": "ok",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.868370+00:00",
+    "last_updated": "2026-09-02T15:21:10.101671+00:00",
     "detail": null
   },
   {
     "source": "jd",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.684261+00:00",
+    "last_updated": "2026-09-02T15:21:10.078403+00:00",
     "detail": "last crawl failed: DiscoveryError: jd: no candidate careers URL returned postings (https://jobs.jd.com/: URLError; https://job.jd.com/: URLError); no data available"
   },
   {
     "source": "jpmorgan-cn",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.864191+00:00",
+    "last_updated": "2026-09-02T15:21:10.099151+00:00",
     "detail": "last crawl failed: DiscoveryError: jpmorgan-cn: no candidate careers URL returned postings (https://careers.jpmorgancn.com/: URLError; https://jobs.jpmorgancn.com/: URLError; https://job.jpmorgancn.com/: URLError); no data available"
   },
   {
     "source": "jump-trading",
     "status": "ok",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.874790+00:00",
+    "last_updated": "2026-09-02T15:21:10.107066+00:00",
     "detail": null
   },
   {
     "source": "kuaishou",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.196034+00:00",
+    "last_updated": "2026-09-02T15:21:10.429058+00:00",
     "detail": "last crawl failed: DiscoveryError: kuaishou: no candidate careers URL returned postings (https://careers.kuaishou.com/: URLError; https://jobs.kuaishou.com/: URLError; https://job.kuaishou.com/: URLError); no data available"
   },
   {
     "source": "mastercard",
     "status": "ok",
     "count": 2,
-    "last_updated": "2026-09-02T10:34:47.186257+00:00",
+    "last_updated": "2026-09-02T15:21:10.420420+00:00",
     "detail": null
   },
   {
     "source": "megvii",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.198818+00:00",
+    "last_updated": "2026-09-02T15:21:10.431161+00:00",
     "detail": "last crawl failed: DiscoveryError: megvii: no candidate careers URL returned postings (https://careers.megvii.com/: HTTPError; https://jobs.megvii.com/: HTTPError; https://job.megvii.com/: HTTPError); no data available"
   },
   {
     "source": "meituan",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.685607+00:00",
+    "last_updated": "2026-09-02T15:21:10.079582+00:00",
     "detail": "last crawl failed: DiscoveryError: meituan: no candidate careers URL returned postings (https://jobs.meituan.com/: URLError); no data available"
   },
   {
     "source": "microsoft",
     "status": "ok",
     "count": 0,
-    "last_updated": "2026-09-02T10:32:16.542592+00:00",
+    "last_updated": "2026-09-02T15:18:38.052424+00:00",
     "detail": null
   },
   {
     "source": "mingshi",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.268807+00:00",
+    "last_updated": "2026-09-02T15:21:10.463552+00:00",
     "detail": "last crawl failed: DiscoveryError: mingshi: no candidate careers URL returned postings (https://www.mingshiim.com/: URLError; https://careers.mingshi.com/: URLError; https://jobs.mingshi.com/: URLError); no data available"
   },
   {
     "source": "minimax",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.844438+00:00",
+    "last_updated": "2026-09-02T15:21:10.083028+00:00",
     "detail": "last crawl failed: DiscoveryError: minimax: no candidate careers URL returned postings (https://minimax.jobs.feishu.cn/index: HTTPError; https://careers.minimax.com/: URLError; https://jobs.minimax.com/: URLError); no data available"
   },
   {
     "source": "mongodb",
     "status": "ok",
     "count": 4,
-    "last_updated": "2026-09-02T10:34:46.884026+00:00",
+    "last_updated": "2026-09-02T15:21:10.115338+00:00",
     "detail": null
   },
   {
     "source": "moonshot",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.687333+00:00",
+    "last_updated": "2026-09-02T15:21:10.080700+00:00",
     "detail": "last crawl failed: DiscoveryError: moonshot: no candidate careers URL returned postings (https://moonshotai.jobs.feishu.cn/index: HTTPError; https://careers.moonshot.com/: URLError; https://jobs.moonshot.com/: URLError); no data available"
   },
   {
     "source": "netease",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.193292+00:00",
+    "last_updated": "2026-09-02T15:21:10.426918+00:00",
     "detail": "last crawl failed: DiscoveryError: netease: no candidate careers URL returned postings (https://careers.netease.com/: URLError; https://jobs.netease.com/: URLError; https://job.netease.com/: URLError); no data available"
   },
   {
     "source": "nvidia",
     "status": "ok",
     "count": 75,
-    "last_updated": "2026-09-02T10:34:46.429509+00:00",
+    "last_updated": "2026-09-02T15:21:10.055511+00:00",
     "detail": null
   },
   {
     "source": "optiver",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.271574+00:00",
+    "last_updated": "2026-09-02T15:21:10.465863+00:00",
     "detail": "last crawl failed: DiscoveryError: optiver: no candidate careers URL returned postings (https://careers.optiver.com/: URLError; https://jobs.optiver.com/: URLError; https://job.optiver.com/: URLError); no data available"
   },
   {
     "source": "pfizer",
     "status": "ok",
     "count": 30,
-    "last_updated": "2026-09-02T10:34:47.180812+00:00",
+    "last_updated": "2026-09-02T15:21:10.414958+00:00",
     "detail": null
   },
   {
     "source": "ping-an",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.866318+00:00",
+    "last_updated": "2026-09-02T15:21:10.100204+00:00",
     "detail": "last crawl failed: DiscoveryError: ping-an: no candidate careers URL returned postings (https://careers.pingan.com/: URLError; https://jobs.pingan.com/: URLError; https://job.pingan.com/: URLError); no data available"
   },
   {
     "source": "pony-ai",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.208051+00:00",
+    "last_updated": "2026-09-02T15:21:10.437045+00:00",
     "detail": "last crawl failed: DiscoveryError: pony-ai: no candidate careers URL returned postings (https://careers.ponyai.com/: URLError; https://jobs.ponyai.com/: URLError; https://job.ponyai.com/: URLError); no data available"
   },
   {
     "source": "psbc",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.256168+00:00",
+    "last_updated": "2026-09-02T15:21:10.453447+00:00",
     "detail": "last crawl failed: DiscoveryError: psbc: no candidate careers URL returned postings (https://careers.psbc.com/: URLError; https://jobs.psbc.com/: URLError; https://job.psbc.com/: URLError); no data available"
   },
   {
     "source": "qualcomm",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.898686+00:00",
+    "last_updated": "2026-09-02T15:21:10.118913+00:00",
     "detail": "last crawl failed: DiscoveryError: qualcomm: no candidate careers URL returned postings (https://job.qualcomm.com/: URLError); no data available"
   },
   {
     "source": "roche",
     "status": "ok",
     "count": 23,
-    "last_updated": "2026-09-02T10:34:47.145464+00:00",
+    "last_updated": "2026-09-02T15:21:10.377749+00:00",
     "detail": null
   },
   {
     "source": "ruitian",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.270298+00:00",
+    "last_updated": "2026-09-02T15:21:10.464719+00:00",
     "detail": "last crawl failed: DiscoveryError: ruitian: no candidate careers URL returned postings (https://careers.ruitian.com/: URLError; https://jobs.ruitian.com/: URLError; https://job.ruitian.com/: URLError); no data available"
   },
   {
     "source": "salesforce",
     "status": "ok",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.634997+00:00",
+    "last_updated": "2026-09-02T15:21:10.074611+00:00",
     "detail": null
   },
   {
     "source": "sap",
     "status": "ok",
     "count": 6,
-    "last_updated": "2026-09-02T10:34:46.996604+00:00",
+    "last_updated": "2026-09-02T15:21:10.221871+00:00",
     "detail": null
   },
   {
     "source": "sensetime",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.197333+00:00",
+    "last_updated": "2026-09-02T15:21:10.430095+00:00",
     "detail": "last crawl failed: DiscoveryError: sensetime: no candidate careers URL returned postings (https://careers.sensetime.com/: URLError; https://jobs.sensetime.com/: URLError; https://job.sensetime.com/: URLError); no data available"
   },
   {
     "source": "shein",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.847028+00:00",
+    "last_updated": "2026-09-02T15:21:10.085170+00:00",
     "detail": "last crawl failed: DiscoveryError: shein: no candidate careers URL returned postings (https://job.sheincorp.cn/society: URLError; https://jobs.shein.com/: URLError; https://job.shein.com/: URLError); no data available"
   },
   {
     "source": "siemens",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.901349+00:00",
+    "last_updated": "2026-09-02T15:21:10.121140+00:00",
     "detail": "last crawl failed: DiscoveryError: siemens: no candidate careers URL returned postings (https://careers.siemens.com/: URLError; https://job.siemens.com/: URLError); no data available"
   },
   {
     "source": "sig",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.274545+00:00",
+    "last_updated": "2026-09-02T15:21:10.468063+00:00",
     "detail": "last crawl failed: DiscoveryError: sig: no candidate careers URL returned postings (https://jobs.sig.com/: URLError; https://job.sig.com/: URLError); no data available"
   },
   {
     "source": "sinopec",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.849848+00:00",
-    "detail": "last crawl failed: DiscoveryError: sinopec: no candidate careers URL returned postings (https://careers.sinopec.com/: URLError; https://jobs.sinopec.com/: URLError; https://hr.sinopec.com/: URLError); no data available"
+    "last_updated": "2026-09-02T15:21:10.087505+00:00",
+    "detail": "last crawl failed: DiscoveryError: sinopec: no candidate careers URL returned postings (https://job.sinopec.com/: URLError; https://careers.sinopec.com/: URLError; https://jobs.sinopec.com/: URLError); no data available"
   },
   {
     "source": "spdb",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.257494+00:00",
+    "last_updated": "2026-09-02T15:21:10.454582+00:00",
     "detail": "last crawl failed: DiscoveryError: spdb: no candidate careers URL returned postings (https://careers.spdb.com/: URLError; https://jobs.spdb.com/: URLError; https://job.spdb.com/: URLError); no data available"
   },
   {
     "source": "state-grid",
     "status": "ok",
     "count": 1,
-    "last_updated": "2026-09-02T10:32:17.601215+00:00",
+    "last_updated": "2026-09-02T15:18:39.037937+00:00",
     "detail": null
   },
   {
     "source": "tencent",
     "status": "ok",
     "count": 0,
-    "last_updated": "2026-09-02T10:32:18.301178+00:00",
+    "last_updated": "2026-09-02T15:18:40.021986+00:00",
     "detail": null
   },
   {
     "source": "thermo-fisher",
     "status": "ok",
     "count": 40,
-    "last_updated": "2026-09-02T10:34:47.112467+00:00",
+    "last_updated": "2026-09-02T15:21:10.344021+00:00",
     "detail": null
   },
   {
     "source": "ubiquant",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.877401+00:00",
+    "last_updated": "2026-09-02T15:21:10.109052+00:00",
     "detail": "last crawl failed: DiscoveryError: ubiquant: no candidate careers URL returned postings (https://ubiquant.jobs.feishu.cn/index: HTTPError; https://careers.ubiquant.com/: URLError; https://jobs.ubiquant.com/: URLError); no data available"
   },
   {
     "source": "xiaohongshu",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.845723+00:00",
+    "last_updated": "2026-09-02T15:21:10.084111+00:00",
     "detail": "last crawl failed: DiscoveryError: xiaohongshu: no candidate careers URL returned postings (https://careers.xiaohongshu.com/: URLError); no data available"
   },
   {
     "source": "xiaomi",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.191953+00:00",
+    "last_updated": "2026-09-02T15:21:10.425749+00:00",
     "detail": "last crawl failed: DiscoveryError: xiaomi: no candidate careers URL returned postings (https://careers.xiaomi.com/: URLError; https://jobs.xiaomi.com/: URLError); no data available"
   },
   {
     "source": "zhipu",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:46.842786+00:00",
+    "last_updated": "2026-09-02T15:21:10.081926+00:00",
     "detail": "last crawl failed: DiscoveryError: zhipu: no candidate careers URL returned postings (https://zhipuai.jobs.feishu.cn/campus: HTTPError; https://careers.zhipu.com/: URLError; https://jobs.zhipu.com/: URLError); no data available"
   },
   {
     "source": "zuoyebang",
     "status": "failed",
     "count": 0,
-    "last_updated": "2026-09-02T10:34:47.215880+00:00",
+    "last_updated": "2026-09-02T15:21:10.438077+00:00",
     "detail": "last crawl failed: DiscoveryError: zuoyebang: no candidate careers URL returned postings (https://careers.zuoyebang.com/: URLError; https://jobs.zuoyebang.com/: URLError; https://job.zuoyebang.com/: HTTPError); no data available"
   }
 ]
