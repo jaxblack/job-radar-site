@@ -39,6 +39,34 @@
     return /^https?:\/\//i.test(u) ? u : "";
   }
   function getSource(j) { return asText(pick(j, ["source", "source_name", "site", "provider"])); }
+  function getEmploymentType(j) { return asText(pick(j, ["employment_type", "employmentType", "timeType"])); }
+  function getRemote(j) { return asText(pick(j, ["remote", "workplace_type", "workplaceType"])); }
+  function getExperience(j) { return asText(pick(j, ["experience_requirement", "experience"])); }
+  function getEducation(j) { return asText(pick(j, ["education_requirement", "education"])); }
+  function getDescription(j) { return asText(pick(j, ["description", "summary", "description_short"])); }
+
+  function getSalary(j) {
+    var text = asText(pick(j, ["salary_text", "salary", "compensation"]));
+    if (text) return text;
+    var low = pick(j, ["salary_min"]);
+    var high = pick(j, ["salary_max"]);
+    if (typeof low !== "number" && typeof high !== "number") return "";
+    var currency = asText(pick(j, ["salary_currency", "currency"]));
+    var range = (typeof low === "number" ? low.toLocaleString() : "?") + "–" +
+      (typeof high === "number" ? high.toLocaleString() : "?");
+    return (currency ? currency + " " : "") + range;
+  }
+
+  function educationLabel(value) {
+    var labels = {
+      "high-school": "高中",
+      associate: "大专",
+      bachelor: "本科",
+      master: "硕士",
+      doctorate: "博士"
+    };
+    return labels[value] || value;
+  }
 
   // 城市 / 公司类别：字段可能缺失，缺失一律降级为 UNKNOWN，不抛错。
   var UNKNOWN = "unknown";
@@ -501,6 +529,30 @@
       var src = getSource(j);
       if (src && src !== company) meta.appendChild(el("span", null, "来源：" + src));
       li.appendChild(meta);
+
+      var facts = el("div", "job-facts");
+      var employment = getEmploymentType(j);
+      var remote = getRemote(j);
+      var typeText = employment || "职位类型未披露";
+      if (remote) typeText += " · " + remote;
+      facts.appendChild(el("div", employment || remote ? "job-fact" : "job-fact is-missing", "类型：" + typeText));
+
+      var salary = getSalary(j);
+      facts.appendChild(el("div", salary ? "job-fact" : "job-fact is-missing", "薪资：" + (salary || "未披露")));
+
+      var experience = getExperience(j);
+      facts.appendChild(el("div", experience && experience !== UNKNOWN ? "job-fact" : "job-fact is-missing", "经验：" + (experience && experience !== UNKNOWN ? experience : "未识别")));
+
+      var education = getEducation(j);
+      facts.appendChild(el("div", education && education !== UNKNOWN ? "job-fact" : "job-fact is-missing", "学历：" + (education && education !== UNKNOWN ? educationLabel(education) : "未识别")));
+      li.appendChild(facts);
+
+      var description = getDescription(j);
+      li.appendChild(el(
+        "p",
+        description ? "job-summary" : "job-summary is-missing",
+        description || "职位描述暂未抓取"
+      ));
 
       list.appendChild(li);
     });
