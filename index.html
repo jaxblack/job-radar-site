@@ -14,6 +14,25 @@
   </div>
   <div id="source-badges" class="badges" aria-label="数据源抓取状态"></div>
   <div id="stale-warnings" class="warnings" role="status"></div>
+  <p id="coverage-summary" class="coverage" role="status">加载中…</p>
+  <details id="source-panel" class="source-panel">
+    <summary id="source-panel-summary">数据源状态（展开查看每个源/公司的抓取情况）</summary>
+    <div class="source-panel-body">
+      <table class="source-table">
+        <thead>
+          <tr>
+            <th scope="col">名称</th>
+            <th scope="col">状态</th>
+            <th scope="col">职位数</th>
+            <th scope="col">上次成功时间</th>
+            <th scope="col">失败原因 / 备注</th>
+          </tr>
+        </thead>
+        <tbody id="source-panel-rows"></tbody>
+      </table>
+      <p id="source-panel-empty" class="empty" hidden>meta.json / sources.json 中没有任何数据源记录。</p>
+    </div>
+  </details>
 </header>
 
 <main>

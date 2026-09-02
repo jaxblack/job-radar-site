@@ -168,3 +168,50 @@ main { max-width: 980px; margin: 0 auto; padding: 20px 24px 60px; }
   padding: 0 0.35em;
   font-size: 0.75rem;
 }
+
+/* ---------- 覆盖率汇总 + 数据源状态面板 ---------- */
+.coverage {
+  margin: 8px 0 4px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.source-panel {
+  margin: 4px 0 2px;
+  font-size: 13px;
+}
+.source-panel > summary {
+  cursor: pointer;
+  user-select: none;
+  padding: 4px 0;
+}
+.source-panel-body {
+  overflow-x: auto;
+  max-height: 340px;
+  overflow-y: auto;
+}
+.source-table {
+  border-collapse: collapse;
+  width: 100%;
+  min-width: 520px;
+}
+.source-table th,
+.source-table td {
+  text-align: left;
+  padding: 4px 8px;
+  border-bottom: 1px solid rgba(128, 128, 128, 0.25);
+  white-space: nowrap;
+}
+.source-table td.src-detail {
+  white-space: normal;
+}
+.status-pill {
+  display: inline-block;
+  padding: 1px 8px;
+  border-radius: 10px;
+  font-size: 12px;
+  border: 1px solid currentColor;
+}
+.pill-ok { color: #1a7f37; }
+.pill-stale { color: #9a6700; }
+.pill-failed { color: #b42318; }
+.pill-unknown { color: #6b7280; }

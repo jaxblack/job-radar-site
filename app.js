@@ -277,6 +277,89 @@
     }
   }
 
+  // ---------- 数据源状态面板 + 覆盖率汇总 ----------
+
+  // meta.json 里可能带一个数字型「配置公司总数」；缺失则回退到实际源条数。
+  function configuredCount() {
+    var v = pick(state.meta, [
+      "configured_companies", "companies_configured", "total_companies",
+      "companies", "configured_sources", "total_sources", "sources_configured", "sources"
+    ]);
+    if (typeof v === "number" && isFinite(v)) return v;
+    if (typeof v === "string" && /^\d+$/.test(v.trim())) return Number(v.trim());
+    if (Array.isArray(v)) return v.length;
+    return null;
+  }
+
+  // 面板数据：优先 meta.json 内嵌的源列表，否则用 sources.json。
+  function panelSources() {
+    var fromMeta = toArray(
+      pick(state.meta, ["sources", "source_reports", "companies", "results"]),
+      ["sources", "items", "data"]
+    );
+    if (fromMeta.length) return fromMeta;
+    return state.sources || [];
+  }
+
+  function renderSourcePanel() {
+    var tbody = $("source-panel-rows");
+    var emptyHint = $("source-panel-empty");
+    var summaryNode = $("source-panel-summary");
+    if (!tbody) return [];
+
+    var rows = panelSources();
+    clear(tbody);
+
+    rows.forEach(function (s) {
+      var st = normStatus(s);
+      var tr = el("tr", "source-row status-" + st);
+      tr.appendChild(el("td", "src-name", sourceName(s)));
+
+      var tdStatus = el("td", "src-status");
+      var badge = el("span", "status-pill pill-" + st, statusLabel(st));
+      tdStatus.appendChild(badge);
+      tr.appendChild(tdStatus);
+
+      var cnt = sourceCount(s);
+      tr.appendChild(el("td", "src-count", cnt === null ? "未知" : String(cnt)));
+
+      var t = sourceTime(s);
+      tr.appendChild(el("td", "src-time", t ? fmtRaw(t) : "未知"));
+
+      var detail = sourceDetail(s);
+      tr.appendChild(el("td", "src-detail", detail || (st === "failed" ? "未知" : "—")));
+
+      tbody.appendChild(tr);
+    });
+
+    if (emptyHint) emptyHint.hidden = rows.length !== 0;
+    if (summaryNode) {
+      summaryNode.textContent = rows.length
+        ? "数据源状态（" + rows.length + " 条记录，点击展开）"
+        : "数据源状态（暂无记录，点击展开）";
+    }
+    return rows;
+  }
+
+  function renderCoverage(rows) {
+    var node = $("coverage-summary");
+    if (!node) return;
+
+    var ok = 0, failed = 0;
+    (rows || []).forEach(function (s) {
+      var st = normStatus(s);
+      if (st === "ok") ok += 1;
+      else failed += 1; // stale / failed / unknown 一律不计入「成功」
+    });
+
+    var configured = configuredCount();
+    var configuredText = configured === null ? "未知" : String(configured);
+    var jobCount = state.jobs.length;
+
+    node.textContent = "本次共 " + configuredText + " 家配置公司，成功 " + ok +
+      " 家，失败 " + failed + " 家，展示职位 " + jobCount + " 条";
+  }
+
   // ---------- filters ----------
 
   function uniqueSorted(values) {
@@ -498,6 +581,7 @@
 
       // 即使 jobs.json 缺失/损坏，页面仍然可用：渲染头部与空列表 + 友好提示，不白屏。
       renderHeader();
+      renderCoverage(renderSourcePanel());
       buildFilters();
       renderJobs();
 
