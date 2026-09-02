@@ -1,8 +1,8 @@
 {
-  "generated_at": "2026-09-02T12:07:46.172313+00:00",
+  "generated_at": "2026-09-02T13:24:48.065276+00:00",
   "total": 28,
   "sources": 6,
-  "snapshot_time": "2026-09-02T12:07:46.364151+00:00",
+  "snapshot_time": "2026-09-02T13:24:48.265150+00:00",
   "failed_sources": [],
   "source_status": {
     "apple": "ok",
@@ -10,6 +10,6 @@
     "bytedance": "ok",
     "tencent": "ok",
     "china-telecom": "ok",
-    "state-grid": "ok"
+    "state-grid": "stale"
   }
 }
