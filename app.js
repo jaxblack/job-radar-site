@@ -39,6 +39,52 @@
     return /^https?:\/\//i.test(u) ? u : "";
   }
   function getSource(j) { return asText(pick(j, ["source", "source_name", "site", "provider"])); }
+
+  // 城市 / 公司类别：字段可能缺失，缺失一律降级为 UNKNOWN，不抛错。
+  var UNKNOWN = "unknown";
+
+  var CATEGORY_LABELS = {
+    foreign: "外企",
+    bigtech: "大厂",
+    unicorn: "独角兽",
+    soe: "国企央企",
+    bank: "银行",
+    finance: "金融",
+    quant: "量化",
+    unknown: "未分类"
+  };
+
+  function getCity(j) {
+    var v = asText(pick(j, ["city", "city_name", "work_city", "job_city"]));
+    return v || UNKNOWN;
+  }
+
+  // 一条记录可能有多个类别（数组），也可能是单个字符串；缺失 → ["unknown"]
+  function getCategories(j) {
+    var raw = pick(j, ["company_category", "companyCategory", "company_categories", "category"]);
+    if (raw === null || raw === undefined) return [UNKNOWN];
+    var list = Array.isArray(raw) ? raw : [raw];
+    var out = [];
+    list.forEach(function (item) {
+      var v = asText(item).toLowerCase();
+      if (v && out.indexOf(v) === -1) out.push(v);
+    });
+    return out.length ? out : [UNKNOWN];
+  }
+
+  function categoryLabel(v) {
+    return CATEGORY_LABELS[v] || v;
+  }
+
+  function selectedValues(sel) {
+    if (!sel) return [];
+    var out = [];
+    var opts = sel.options || [];
+    for (var i = 0; i < opts.length; i++) {
+      if (opts[i].selected && opts[i].value) out.push(opts[i].value);
+    }
+    return out;
+  }
   function getRawTime(j) {
     return pick(j, [
       "posted_at", "published_at", "publish_time", "postingDate",
@@ -108,10 +154,22 @@
   }
 
   function sourceTime(s) {
+    // NOTE: export.py 的 SourceReport 实际写出的字段是 last_updated，
+    // 必须排在最前，否则降级提示会退化成「更早」。
     return pick(s, [
+      "last_updated",
       "last_success_at", "last_ok_at", "last_successful_at",
       "fetched_at", "last_fetched_at", "last_run_at", "updated_at", "timestamp", "time"
     ]);
+  }
+
+  function sourceDetail(s) {
+    return asText(pick(s, ["detail", "message", "error", "reason"]));
+  }
+
+  function sourceCount(s) {
+    var v = pick(s, ["count", "total", "n"]);
+    return typeof v === "number" ? v : null;
   }
 
   function statusLabel(st) {
@@ -136,18 +194,29 @@
       var t = sourceTime(s);
       var cls = st === "ok" ? "badge-ok" : st === "stale" ? "badge-stale" : st === "failed" ? "badge-failed" : "badge-unknown";
 
+      var cnt = sourceCount(s);
+      var detail = sourceDetail(s);
+
       var b = el("span", "badge " + cls);
       b.appendChild(el("span", "dot"));
-      b.appendChild(el("span", null, name + " · " + statusLabel(st)));
-      b.title = name + "：" + statusLabel(st) + (t ? "（" + fmtRaw(t) + "）" : "");
+      b.appendChild(el("span", null, name + " · " + statusLabel(st) +
+        (cnt !== null ? "（" + cnt + "）" : "")));
+      b.title = name + "：" + statusLabel(st) +
+        (t ? "（数据时间 " + fmtRaw(t) + "）" : "") +
+        (detail ? "｜" + detail : "");
       badges.appendChild(b);
 
       if (st !== "ok") {
         var when = t ? fmtRaw(t) : "更早";
         var line = el("div", "warn-line" + (st === "failed" ? " is-failed" : ""));
-        line.textContent = "⚠️ 来源「" + name + "」" +
-          (st === "failed" ? "本次抓取失败" : "数据已陈旧") +
-          "，展示的是 " + when + " 的旧数据。";
+        if (st === "failed" && !cnt) {
+          line.textContent = "⚠️ 来源「" + name + "」本次抓取失败，且没有可展示的旧数据。";
+        } else {
+          line.textContent = "⚠️ 来源「" + name + "」" +
+            (st === "failed" ? "本次抓取失败" : "数据已陈旧") +
+            "，展示的是 " + when + " 的旧数据。";
+        }
+        if (detail) line.textContent += "（" + detail + "）";
         warns.appendChild(line);
       }
     });
@@ -174,20 +243,59 @@
     if (values.indexOf(prev) !== -1) sel.value = prev;
   }
 
+  // 城市下拉：真实城市按拼音排序，unknown 固定放在最后，标签为「未知城市」
+  function fillCitySelect(sel, jobs) {
+    if (!sel) return;
+    var prev = sel.value;
+    var cities = uniqueSorted(jobs.map(getCity).filter(function (c) { return c !== UNKNOWN; }));
+    var hasUnknown = jobs.some(function (j) { return getCity(j) === UNKNOWN; });
+    clear(sel);
+    sel.appendChild(new Option("全部城市", ""));
+    cities.forEach(function (c) { sel.appendChild(new Option(c, c)); });
+    if (hasUnknown) sel.appendChild(new Option("未知城市", UNKNOWN));
+    var values = cities.concat(hasUnknown ? [UNKNOWN] : []);
+    if (values.indexOf(prev) !== -1) sel.value = prev;
+  }
+
+  // 公司类别多选：固定 7 类 + unknown；数据里出现的未知取值也补进来，避免筛不到
+  function syncCategorySelect(sel, jobs) {
+    if (!sel) return;
+    var known = {};
+    var i;
+    for (i = 0; i < sel.options.length; i++) known[sel.options[i].value] = true;
+    var extra = [];
+    jobs.forEach(function (j) {
+      getCategories(j).forEach(function (c) {
+        if (!known[c] && extra.indexOf(c) === -1) extra.push(c);
+      });
+    });
+    extra.sort().forEach(function (c) { sel.appendChild(new Option(categoryLabel(c), c)); });
+  }
+
   function buildFilters() {
     fillSelect($("filter-company"), uniqueSorted(state.jobs.map(getCompany)), "全部公司");
     fillSelect($("filter-location"), uniqueSorted(state.jobs.map(getLocation)), "全部地点");
+    fillCitySelect($("filter-city"), state.jobs);
+    syncCategorySelect($("filter-category"), state.jobs);
   }
 
   function currentView() {
     var company = $("filter-company").value;
     var location = $("filter-location").value;
+    var city = $("filter-city") ? $("filter-city").value : "";
+    var cats = selectedValues($("filter-category"));
     var kw = $("filter-keyword").value.trim().toLowerCase();
     var order = $("sort-order").value;
 
     var rows = state.jobs.filter(function (j) {
       if (company && getCompany(j) !== company) return false;
       if (location && getLocation(j) !== location) return false;
+      if (city && getCity(j) !== city) return false;
+      if (cats.length) {
+        var jc = getCategories(j);
+        var hit = cats.some(function (c) { return jc.indexOf(c) !== -1; });
+        if (!hit) return false;
+      }
       if (kw) {
         var hay = [getTitle(j), getCompany(j), getLocation(j), getSource(j)].join(" ").toLowerCase();
         if (hay.indexOf(kw) === -1) return false;
@@ -215,7 +323,13 @@
     clear(list);
 
     $("result-count").textContent = "共 " + rows.length + " 条职位（总计 " + state.jobs.length + " 条）";
-    $("empty-hint").hidden = rows.length !== 0;
+    var emptyHint = $("empty-hint");
+    emptyHint.hidden = rows.length !== 0;
+    if (rows.length === 0) {
+      emptyHint.textContent = state.jobs.length === 0
+        ? "暂无职位数据。"
+        : "没有符合条件的职位，请放宽筛选条件或点击「重置」。";
+    }
 
     rows.forEach(function (j) {
       var li = el("li", "job-card");
@@ -282,37 +396,51 @@
     var box = $("error-box");
     box.hidden = false;
     clear(box);
-    box.appendChild(el("strong", null, "数据加载失败"));
+    box.appendChild(el("strong", null, "职位数据加载失败"));
     box.appendChild(el("p", null, msg));
-    box.appendChild(el("p", null, "请确认 site/data/ 下存在 jobs.json、sources.json、meta.json，并通过 HTTP 服务打开页面（例如在 site/ 目录执行 python3 -m http.server 后访问 http://localhost:8000/）。"));
-    $("generated-at").textContent = "不可用";
-    $("result-count").textContent = "";
+    box.appendChild(el("p", null, "页面仍可正常使用，但暂时没有职位可展示。请确认 site/data/ 下存在 jobs.json、sources.json、meta.json，并通过 HTTP 服务打开页面（例如在 site/ 目录执行 python3 -m http.server 后访问 http://localhost:8000/）。"));
   }
 
   function init() {
-    ["filter-company", "filter-location", "sort-order"].forEach(function (id) {
-      $(id).addEventListener("change", renderJobs);
+    ["filter-company", "filter-location", "filter-city", "filter-category", "sort-order"].forEach(function (id) {
+      var node = $(id);
+      if (node) node.addEventListener("change", renderJobs);
     });
     $("filter-keyword").addEventListener("input", renderJobs);
     $("reset-btn").addEventListener("click", function () {
       $("filter-company").value = "";
       $("filter-location").value = "";
+      if ($("filter-city")) $("filter-city").value = "";
+      var cat = $("filter-category");
+      if (cat) {
+        for (var i = 0; i < cat.options.length; i++) cat.options[i].selected = false;
+      }
       $("filter-keyword").value = "";
       $("sort-order").value = "desc";
       renderJobs();
     });
 
     Promise.all([
-      loadJson("data/jobs.json"),
+      loadJson("data/jobs.json").then(
+        function (v) { return { ok: true, value: v }; },
+        function (e) { return { ok: false, error: e }; }
+      ),
       loadJson("data/sources.json").catch(function () { return []; }),
       loadJson("data/meta.json").catch(function () { return {}; })
     ]).then(function (res) {
-      state.jobs = toArray(res[0], ["jobs", "items", "data", "results"]);
+      var jobsRes = res[0];
+      state.jobs = jobsRes.ok ? toArray(jobsRes.value, ["jobs", "items", "data", "results"]) : [];
       state.sources = toArray(res[1], ["sources", "items", "data"]);
       state.meta = (res[2] && typeof res[2] === "object" && !Array.isArray(res[2])) ? res[2] : {};
+
+      // 即使 jobs.json 缺失/损坏，页面仍然可用：渲染头部与空列表 + 友好提示，不白屏。
       renderHeader();
       buildFilters();
       renderJobs();
+
+      if (!jobsRes.ok) {
+        showError(String((jobsRes.error && jobsRes.error.message) || jobsRes.error));
+      }
     }).catch(function (err) {
       showError(String((err && err.message) || err));
     });
@@ -325,6 +453,6 @@
   }
 
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { toDate: toDate, pick: pick, asText: asText, toArray: toArray, normStatus: normStatus };
+    module.exports = { toDate: toDate, pick: pick, asText: asText, toArray: toArray, normStatus: normStatus, getCity: getCity, getCategories: getCategories, sourceTime: sourceTime, sourceName: sourceName };
   }
 })();

@@ -86,6 +86,8 @@ main { max-width: 980px; margin: 0 auto; padding: 20px 24px 60px; }
   min-width: 150px;
 }
 .field.grow input { min-width: 100%; }
+.field.field-multi select[multiple] { padding: 4px; min-width: 150px; overflow-y: auto; }
+.field.field-multi select[multiple] option { padding: 2px 6px; }
 
 .reset {
   font-size: 13px;

@@ -26,6 +26,23 @@
       <span>地点</span>
       <select id="filter-location"><option value="">全部地点</option></select>
     </label>
+    <label class="field">
+      <span>城市</span>
+      <select id="filter-city"><option value="">全部城市</option></select>
+    </label>
+    <label class="field field-multi">
+      <span>公司类别（可多选）</span>
+      <select id="filter-category" multiple size="4" aria-label="公司类别，可多选">
+        <option value="foreign">外企</option>
+        <option value="bigtech">大厂</option>
+        <option value="unicorn">独角兽</option>
+        <option value="soe">国企央企</option>
+        <option value="bank">银行</option>
+        <option value="finance">金融</option>
+        <option value="quant">量化</option>
+        <option value="unknown">未分类</option>
+      </select>
+    </label>
     <label class="field grow">
       <span>关键字</span>
       <input id="filter-keyword" type="search" placeholder="搜索标题 / 公司 / 地点…" autocomplete="off" />
