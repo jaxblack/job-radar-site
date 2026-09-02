@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-09-02T18:31:48.706782+00:00",
+  "generated_at": "2026-09-02T18:34:48.139140+00:00",
   "total": 359,
   "sources": 84,
   "failed_sources": [
@@ -55,7 +55,6 @@
     "psbc",
     "qualcomm",
     "ruitian",
-    "sap",
     "sensetime",
     "shein",
     "siemens",
@@ -138,7 +137,7 @@
     "roche": "ok",
     "ruitian": "failed",
     "salesforce": "ok",
-    "sap": "failed",
+    "sap": "ok",
     "sensetime": "failed",
     "shein": "failed",
     "siemens": "failed",
