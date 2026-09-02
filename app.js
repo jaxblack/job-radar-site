@@ -76,6 +76,12 @@
     return CATEGORY_LABELS[v] || v;
   }
 
+  // 北京识别：城市或地点字段命中「北京」/「Beijing」即视为北京岗位。
+  function isBeijing(j) {
+    var hay = (getCity(j) + " " + getLocation(j)).toLowerCase();
+    return hay.indexOf("北京") !== -1 || hay.indexOf("beijing") !== -1;
+  }
+
   function selectedValues(sel) {
     if (!sel) return [];
     var out = [];
@@ -286,8 +292,10 @@
     var cats = selectedValues($("filter-category"));
     var kw = $("filter-keyword").value.trim().toLowerCase();
     var order = $("sort-order").value;
+    var onlyBJ = $("only-beijing") ? $("only-beijing").checked : false;
 
     var rows = state.jobs.filter(function (j) {
+      if (onlyBJ && !isBeijing(j)) return false;
       if (company && getCompany(j) !== company) return false;
       if (location && getLocation(j) !== location) return false;
       if (city && getCity(j) !== city) return false;
@@ -331,8 +339,11 @@
         : "没有符合条件的职位，请放宽筛选条件或点击「重置」。";
     }
 
+    var hlBJ = $("highlight-beijing") ? $("highlight-beijing").checked : true;
+
     rows.forEach(function (j) {
-      var li = el("li", "job-card");
+      var bj = isBeijing(j);
+      var li = el("li", "job-card" + (bj && hlBJ ? " is-beijing" : ""));
       var h = el("h2", "job-title");
       var title = getTitle(j) || "（无标题）";
       var url = getUrl(j);
@@ -348,6 +359,7 @@
       li.appendChild(h);
 
       var meta = el("div", "job-meta");
+      if (bj) meta.appendChild(el("span", "tag-bj", "北京"));
       var company = getCompany(j);
       if (company) meta.appendChild(el("span", "company", company));
       var loc = getLocation(j);
@@ -402,7 +414,7 @@
   }
 
   function init() {
-    ["filter-company", "filter-location", "filter-city", "filter-category", "sort-order"].forEach(function (id) {
+    ["filter-company", "filter-location", "filter-city", "filter-category", "sort-order", "highlight-beijing", "only-beijing"].forEach(function (id) {
       var node = $(id);
       if (node) node.addEventListener("change", renderJobs);
     });
@@ -417,6 +429,8 @@
       }
       $("filter-keyword").value = "";
       $("sort-order").value = "desc";
+      if ($("highlight-beijing")) $("highlight-beijing").checked = true;
+      if ($("only-beijing")) $("only-beijing").checked = false;
       renderJobs();
     });
 
@@ -453,6 +467,6 @@
   }
 
   if (typeof module !== "undefined" && module.exports) {
-    module.exports = { toDate: toDate, pick: pick, asText: asText, toArray: toArray, normStatus: normStatus, getCity: getCity, getCategories: getCategories, sourceTime: sourceTime, sourceName: sourceName };
+    module.exports = { toDate: toDate, pick: pick, asText: asText, toArray: toArray, normStatus: normStatus, getCity: getCity, getCategories: getCategories, sourceTime: sourceTime, sourceName: sourceName, isBeijing: isBeijing };
   }
 })();

@@ -139,3 +139,27 @@ main { max-width: 980px; margin: 0 auto; padding: 20px 24px 60px; }
   .field select, .field input { min-width: 0; width: 100%; }
   .field { flex: 1 1 100%; }
 }
+
+/* --- 北京高亮 / 只看北京 --- */
+.field-check .check-row {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.85rem;
+  font-weight: 400;
+  white-space: nowrap;
+}
+.field-check .check-row input { margin: 0; }
+
+.job-card.is-beijing {
+  border-left: 4px solid #d4380d;
+  background: #fff7f0;
+}
+
+.job-meta .tag-bj {
+  background: #d4380d;
+  color: #fff;
+  border-radius: 3px;
+  padding: 0 0.35em;
+  font-size: 0.75rem;
+}
