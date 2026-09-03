@@ -3,6 +3,7 @@
   "use strict";
 
   var state = { jobs: [], sources: [], meta: {} };
+  var PLACEHOLDER = "未提供";
 
   // ---------- tolerant field access ----------
 
@@ -93,6 +94,61 @@
     "未分类": "unknown"
   };
 
+  var ROLE_LABELS = {
+    data: "数据 / AI",
+    engineering: "研发 / 工程",
+    product: "产品",
+    design: "设计",
+    operations: "运营 / 客服",
+    sales: "销售 / 市场",
+    finance: "金融 / 财务",
+    people: "人力 / 行政 / 法务",
+    other: "其他"
+  };
+
+  // 分类只使用公开导出字段（公司、来源、标题、描述），规则与顺序固定，结果可复现。
+  var COMPANY_RULES = [
+    ["quant", /quant|量化|hedge fund|高毅|幻方|九坤|明汯/i],
+    ["bank", /bank|银行|农商行|信用社/i],
+    ["soe", /国家电网|中国电信|中国移动|中国联通|中石油|中石化|中国邮政|央企|国有/i],
+    ["finance", /证券|保险|基金|金融|capital|securities|insurance/i],
+    ["unicorn", /独角兽|小红书|滴滴|大疆|商汤|地平线|蔚来|小鹏|理想汽车/i],
+    ["bigtech", /字节|bytedance|腾讯|tencent|阿里|alibaba|百度|baidu|京东|美团|快手|华为|小米|网易|拼多多/i],
+    ["foreign", /apple|microsoft|google|amazon|meta|netflix|tesla|nvidia|intel|ibm|oracle|sap|siemens|bosch|stripe|palantir|外企/i]
+  ];
+
+  var ROLE_RULES = [
+    ["data", /机器学习|人工智能|算法|数据科学|数据分析|数据平台|大模型|深度学习|machine learning|\bai\b|data scien|data analy|data engineer|research scientist/i],
+    ["product", /产品经理|产品运营|product manager|product owner/i],
+    ["design", /设计|交互|用户体验|视觉|designer|\bux\b|\bui\b/i],
+    ["operations", /运营|客服|客户成功|内容审核|operation|customer success|support/i],
+    ["sales", /销售|市场|商务|客户经理|渠道|营销|sales|marketing|business development/i],
+    ["finance", /财务|会计|审计|投研|投资|风控|精算|finance|accounting|audit|risk/i],
+    ["people", /人力|招聘|行政|法务|合规|采购|human resources|recruit|legal|compliance|admin/i],
+    ["engineering", /工程师|开发|研发|架构|测试|运维|安全|云网|电网调度|software|engineer|developer|architect|\bsre\b|devops|security/i]
+  ];
+
+  function deriveCompanyCategories(j) {
+    var explicit = getCategories(j).filter(function (c) { return c !== UNKNOWN; });
+    var hay = [getCompany(j), getSource(j)].join(" ");
+    var derived = [];
+    COMPANY_RULES.forEach(function (rule) {
+      if (rule[1].test(hay)) derived.push(rule[0]);
+    });
+    var combined = explicit.concat(derived).filter(function (v, i, a) { return a.indexOf(v) === i; });
+    return combined.length ? combined : [UNKNOWN];
+  }
+
+  function deriveRole(j) {
+    var hay = [getTitle(j), getDescription(j)].join(" ");
+    for (var i = 0; i < ROLE_RULES.length; i++) {
+      if (ROLE_RULES[i][1].test(hay)) return ROLE_RULES[i][0];
+    }
+    return "other";
+  }
+
+  function roleLabel(v) { return ROLE_LABELS[v] || ROLE_LABELS.other; }
+
   function getCity(j) {
     var v = asText(pick(j, ["city", "city_name", "work_city", "job_city"]));
     return v || UNKNOWN;
@@ -136,6 +192,14 @@
       "posted_at", "published_at", "publish_time", "postingDate",
       "date", "first_seen_at", "last_seen_at", "created_at", "updated_at"
     ]);
+  }
+
+  function getPostedTime(j) {
+    return pick(j, ["posted_at", "published_at", "publish_time", "postingDate", "date", "created_at"]);
+  }
+
+  function getUpdatedTime(j) {
+    return pick(j, ["last_seen_at", "updated_at", "last_updated", "fetched_at"]);
   }
 
   // ---------- time ----------
@@ -443,29 +507,34 @@
     fillSelect($("filter-location"), uniqueSorted(state.jobs.map(getLocation)), "全部地点");
     fillCitySelect($("filter-city"), state.jobs);
     syncCategorySelect($("filter-category"), state.jobs);
+    fillSelect($("filter-role"), uniqueSorted(state.jobs.map(deriveRole).map(roleLabel)), "全部岗位类别");
   }
 
-  function currentView() {
-    var company = $("filter-company").value;
-    var location = $("filter-location").value;
-    var city = $("filter-city") ? $("filter-city").value : "";
-    var cats = selectedValues($("filter-category"));
-    var kw = $("filter-keyword").value.trim().toLowerCase();
-    var order = $("sort-order").value;
-    var onlyBJ = $("only-beijing") ? $("only-beijing").checked : false;
+  function sourceForJob(j) {
+    var wanted = getSource(j).toLowerCase();
+    for (var i = 0; i < state.sources.length; i++) {
+      if (sourceName(state.sources[i]).toLowerCase() === wanted) return state.sources[i];
+    }
+    return null;
+  }
 
-    var rows = state.jobs.filter(function (j) {
-      if (onlyBJ && !isBeijing(j)) return false;
-      if (company && getCompany(j) !== company) return false;
-      if (location && getLocation(j) !== location) return false;
-      if (city && getCity(j) !== city) return false;
+  function filterAndSortJobs(jobs, criteria) {
+    criteria = criteria || {};
+    var kw = (criteria.keyword || "").trim().toLowerCase();
+    var cats = criteria.categories || [];
+    var rows = jobs.filter(function (j) {
+      if (criteria.onlyBeijing && !isBeijing(j)) return false;
+      if (criteria.company && getCompany(j) !== criteria.company) return false;
+      if (criteria.location && getLocation(j) !== criteria.location) return false;
+      if (criteria.city && getCity(j) !== criteria.city) return false;
+      if (criteria.role && roleLabel(deriveRole(j)) !== criteria.role) return false;
       if (cats.length) {
-        var jc = getCategories(j);
-        var hit = cats.some(function (c) { return jc.indexOf(c) !== -1; });
-        if (!hit) return false;
+        var jc = deriveCompanyCategories(j);
+        if (!cats.some(function (c) { return jc.indexOf(c) !== -1; })) return false;
       }
       if (kw) {
-        var hay = [getTitle(j), getCompany(j), getLocation(j), getSource(j)].join(" ").toLowerCase();
+        var hay = [getTitle(j), getCompany(j), getLocation(j), getSource(j), getDescription(j),
+          deriveCompanyCategories(j).map(categoryLabel).join(" "), roleLabel(deriveRole(j))].join(" ").toLowerCase();
         if (hay.indexOf(kw) === -1) return false;
       }
       return true;
@@ -477,12 +546,24 @@
       var ta = da ? da.getTime() : null;
       var tb = db ? db.getTime() : null;
       if (ta === null && tb === null) return 0;
-      if (ta === null) return 1;   // undated always last
+      if (ta === null) return 1;
       if (tb === null) return -1;
-      return order === "asc" ? ta - tb : tb - ta;
+      return criteria.order === "asc" ? ta - tb : tb - ta;
     });
-
     return rows;
+  }
+
+  function currentView() {
+    return filterAndSortJobs(state.jobs, {
+      company: $("filter-company").value,
+      location: $("filter-location").value,
+      city: $("filter-city") ? $("filter-city").value : "",
+      categories: selectedValues($("filter-category")),
+      role: $("filter-role") ? $("filter-role").value : "",
+      keyword: $("filter-keyword").value,
+      order: $("sort-order").value,
+      onlyBeijing: $("only-beijing") ? $("only-beijing").checked : false
+    });
   }
 
   function renderJobs() {
@@ -505,7 +586,7 @@
       var bj = isBeijing(j);
       var li = el("li", "job-card" + (bj && hlBJ ? " is-beijing" : ""));
       var h = el("h2", "job-title");
-      var title = getTitle(j) || "（无标题）";
+      var title = getTitle(j) || PLACEHOLDER;
       var url = getUrl(j);
       if (url) {
         var a = el("a", null, title);
@@ -520,39 +601,62 @@
 
       var meta = el("div", "job-meta");
       if (bj) meta.appendChild(el("span", "tag-bj", "北京"));
-      var company = getCompany(j);
-      if (company) meta.appendChild(el("span", "company", company));
-      var loc = getLocation(j);
-      if (loc) meta.appendChild(el("span", null, "📍 " + loc));
-      var d = toDate(getRawTime(j));
-      meta.appendChild(el("span", null, "🕒 " + (d ? fmtDate(d) : "时间未知")));
-      var src = getSource(j);
-      if (src && src !== company) meta.appendChild(el("span", null, "来源：" + src));
+      var company = getCompany(j) || PLACEHOLDER;
+      meta.appendChild(el("span", "company", "公司：" + company));
+      var loc = getLocation(j) || PLACEHOLDER;
+      meta.appendChild(el("span", null, "地点：" + loc));
+      var posted = toDate(getPostedTime(j));
+      meta.appendChild(el("span", null, "发布时间：" + (posted ? fmtDate(posted) : PLACEHOLDER)));
+      var updated = toDate(getUpdatedTime(j));
+      meta.appendChild(el("span", null, "更新时间：" + (updated ? fmtDateTime(updated) : PLACEHOLDER)));
+      var src = getSource(j) || PLACEHOLDER;
+      meta.appendChild(el("span", null, "来源：" + src));
+      var sourceRecord = sourceForJob(j);
+      var sourceStatus = sourceRecord ? normStatus(sourceRecord) : ((j.stale === true) ? "stale" : "unknown");
+      meta.appendChild(el("span", "status-pill pill-" + sourceStatus, "源状态：" + statusLabel(sourceStatus)));
       li.appendChild(meta);
+
+      var taxonomy = el("div", "taxonomy");
+      deriveCompanyCategories(j).forEach(function (category) {
+        taxonomy.appendChild(el("span", "taxonomy-tag", "公司类别：" + categoryLabel(category)));
+      });
+      taxonomy.appendChild(el("span", "taxonomy-tag", "岗位类别：" + roleLabel(deriveRole(j))));
+      li.appendChild(taxonomy);
 
       var facts = el("div", "job-facts");
       var employment = getEmploymentType(j);
       var remote = getRemote(j);
-      var typeText = employment || "职位类型未披露";
-      if (remote) typeText += " · " + remote;
+      var typeText = employment || PLACEHOLDER;
+      if (remote) typeText += (employment ? " · " : "") + remote;
       facts.appendChild(el("div", employment || remote ? "job-fact" : "job-fact is-missing", "类型：" + typeText));
 
       var salary = getSalary(j);
-      facts.appendChild(el("div", salary ? "job-fact" : "job-fact is-missing", "薪资：" + (salary || "未披露")));
+      facts.appendChild(el("div", salary ? "job-fact" : "job-fact is-missing", "薪资：" + (salary || PLACEHOLDER)));
 
       var experience = getExperience(j);
-      facts.appendChild(el("div", experience && experience !== UNKNOWN ? "job-fact" : "job-fact is-missing", "经验：" + (experience && experience !== UNKNOWN ? experience : "未识别")));
+      facts.appendChild(el("div", experience && experience !== UNKNOWN ? "job-fact" : "job-fact is-missing", "经验：" + (experience && experience !== UNKNOWN ? experience : PLACEHOLDER)));
 
       var education = getEducation(j);
-      facts.appendChild(el("div", education && education !== UNKNOWN ? "job-fact" : "job-fact is-missing", "学历：" + (education && education !== UNKNOWN ? educationLabel(education) : "未识别")));
+      facts.appendChild(el("div", education && education !== UNKNOWN ? "job-fact" : "job-fact is-missing", "学历：" + (education && education !== UNKNOWN ? educationLabel(education) : PLACEHOLDER)));
       li.appendChild(facts);
 
       var description = getDescription(j);
       li.appendChild(el(
         "p",
         description ? "job-summary" : "job-summary is-missing",
-        description || "职位描述暂未抓取"
+        "职位描述：" + (description || PLACEHOLDER)
       ));
+
+      var link = getUrl(j);
+      if (link) {
+        var original = el("a", "original-link", "查看原始招聘链接 ↗");
+        original.href = link;
+        original.target = "_blank";
+        original.rel = "noopener noreferrer";
+        li.appendChild(original);
+      } else {
+        li.appendChild(el("span", "original-link is-missing", "原始招聘链接：" + PLACEHOLDER));
+      }
 
       list.appendChild(li);
     });
@@ -598,7 +702,7 @@
   }
 
   function init() {
-    ["filter-company", "filter-location", "filter-city", "filter-category", "sort-order", "highlight-beijing", "only-beijing"].forEach(function (id) {
+    ["filter-company", "filter-location", "filter-city", "filter-category", "filter-role", "sort-order", "highlight-beijing", "only-beijing"].forEach(function (id) {
       var node = $(id);
       if (node) node.addEventListener("change", renderJobs);
     });
@@ -607,6 +711,7 @@
       $("filter-company").value = "";
       $("filter-location").value = "";
       if ($("filter-city")) $("filter-city").value = "";
+      if ($("filter-role")) $("filter-role").value = "";
       var cat = $("filter-category");
       if (cat) {
         for (var i = 0; i < cat.options.length; i++) cat.options[i].selected = false;
@@ -651,7 +756,11 @@
     init();
   }
 
-  if (typeof module !== "undefined" && module.exports) {
-    module.exports = { toDate: toDate, pick: pick, asText: asText, toArray: toArray, normStatus: normStatus, getCity: getCity, getCategories: getCategories, sourceTime: sourceTime, sourceName: sourceName, isBeijing: isBeijing };
-  }
+  var api = { toDate: toDate, pick: pick, asText: asText, toArray: toArray,
+    normStatus: normStatus, getCity: getCity, getCategories: getCategories,
+    deriveCompanyCategories: deriveCompanyCategories, deriveRole: deriveRole,
+    roleLabel: roleLabel, filterAndSortJobs: filterAndSortJobs,
+    sourceTime: sourceTime, sourceName: sourceName, isBeijing: isBeijing };
+  if (typeof window !== "undefined") window.JobRadar = api;
+  if (typeof module !== "undefined" && module.exports) module.exports = api;
 })();

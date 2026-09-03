@@ -137,6 +137,15 @@ main { max-width: 980px; margin: 0 auto; padding: 20px 24px 60px; }
 .job-meta { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: 13px; color: var(--muted); }
 .job-meta .company { color: var(--text); font-weight: 600; }
 
+.taxonomy { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 9px; }
+.taxonomy-tag {
+  padding: 2px 8px;
+  border-radius: 999px;
+  background: #eef4ff;
+  color: #2457a7;
+  font-size: 12px;
+}
+
 .job-facts {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
@@ -159,6 +168,8 @@ main { max-width: 980px; margin: 0 auto; padding: 20px 24px 60px; }
   line-height: 1.55;
 }
 .job-summary.is-missing { color: var(--muted); }
+.original-link { display: inline-block; margin-top: 8px; color: var(--accent); font-size: 13px; }
+.original-link.is-missing { color: var(--muted); }
 
 .empty { text-align: center; color: var(--muted); padding: 40px 0; }
 
